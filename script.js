@@ -25,9 +25,24 @@ const timerFunc = () => {
     }
 
 }
+
 const setNewDate = () => {
     console.log(dateI.value)
 }
 setInterval(timerFunc, 1000)
 
+async function fetchText() {
+    let response = await fetch('https://source.unsplash.com/random');
 
+    console.log(response.status); // 200
+    console.log(response.statusText); // OK
+
+    if (response.status === 200) {
+        let data = await response;
+        console.log(data.url)
+        // handle data
+        document.body.style.backgroundImage = `url(${data.url})`
+    }
+}
+
+fetchText();
